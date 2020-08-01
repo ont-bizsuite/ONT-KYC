@@ -1,23 +1,25 @@
+[TOC]
+
 ## 更多接口定义
 
 ### 查询授权请求状态
 
 ```json
-Host：域名+/api/v1/onttag/authrequesters
+Host：域名/api/v1/onttag/authrequesters
 Method：GET /HTTP/1.1
 Content-Type: application/json
 RequestExample：
-http://域名+/api/v1/onttag/authrequesters?authID=123345667878780041
+http://域名/api/v1/onttag/authrequesters?authID=123345667878780041
 
 {
-  "action": "queryAuthStat",
-  "error": 0,
-  "desc": "SUCCESS",
-  "version": "1.0",
-  "result": {
-	"auth_id": "123345667878780008",
-	"auth_status": true
-  }
+	"action": "queryAuthStat",
+	"error": 0,
+	"desc": "SUCCESS",
+	"version": "1.0",
+	"result": {
+		"auth_id": "123345667878780008",
+		"auth_status": true
+	}
 }
 ```
 
@@ -43,31 +45,30 @@ http://域名+/api/v1/onttag/authrequesters?authID=123345667878780041
 用户认证数据基于签发的可信声明模板，在ONT ID授权托管模式下，用户可以随时获取自己已经认证过的可信声明数据，数据被用户ONT ID进行加密，ONT TAG并不可获取用户数据。
 
 ```json
-Host：域名+/api/v1/onttag/authrequesters
+Host：域名/api/v1/onttag/authrequesters
 Method：GET /HTTP/1.1
 Content-Type: application/json
 RequestExample：
 {
-	"nounce":"123345667878780012",
-	"auth_template":"authtemplate_kyc01",
-	"ontid":"did:ont:AW6SJLdw6G3Ka2VnSxKapmRm6ee7qkjU9D",
-	"signature":"111111111111111111111"
+	"nounce": "123345667878780012",
+	"auth_template": "authtemplate_kyc01",
+	"ontid": "did:ont:AW6SJLdw6G3Ka2VnSxKapmRm6ee7qkjU9D",
+	"signature": "111111111111111111111"
 }
 
+Response
 {
-  "action": "queryMyClaims",
-  "error": 0,
-  "desc": "SUCCESS",
-  "version": "1.0",
-  "result": [
-	{
-	  "claim_context": "claim:sfp_passport_authentication",
-	  "create_time": "2019-01-10T14:19:46.000+0000",
-	  "encrp_origdata": "",
-	  "issue_ontid": "did:ont:ARr6ApK24EU7nufND4s1SWpwULHBertpJb",
-	  "txnhash": ""
-	}
-  ]
+	"action": "queryMyCredentails",
+	"error": 0,
+	"desc": "SUCCESS",
+	"version": "1.0",
+	"result": [{
+		"credentail_context": "credentail:sfp_passport_authentication",
+		"create_time": "2019-01-10T14:19:46.000+0000",
+		"encrp_origdata": "",
+		"issue_ontid": "did:ont:ARr6ApK24EU7nufND4s1SWpwULHBertpJb",
+		"txnhash": ""
+	}]
 }
 ```
 
@@ -86,7 +87,7 @@ RequestExample：
 |error | int | 错误码 |
 |desc | String | 错误信息。成功即SUCCESS，其他即错误信息|
 |result | boolean | 对象列表|
-|claim_context | String | CLaim模板 |
+|credentail_context | String | credentail模板 |
 |encrp_origdata | String | 加密数据 |
 |txnhash | String | 上链交易HASH |
 |create_time | String | 生成时间 |
@@ -355,19 +356,18 @@ Zimbabwe|ZW
 
 Payload里认证信息clm格式如下：
 
-```
+```json
 {
-	"clm":{
+	"cred": {
 		"Nationality": "US",
-		"Name":"john smith",
-		"BirthDay":"1990-01-01",
-		"IssueDate":"2000-01-01",
-		"ExpirationDate":"2020-01-01",
-		"IDDocNumber":"510807199001012551",
-		"IssuerName":"ONTTA"
+		"Name": "john smith",
+		"BirthDay": "1990-01-01",
+		"IssueDate": "2000-01-01",
+		"ExpirationDate": "2020-01-01",
+		"IDDocNumber": "510807199001012551",
+		"IssuerName": "ONTTA"
 	}
 }
-
 ```
 | Field     |     Type |   Description   |
 | :--------------: | :--------:| :------: |
@@ -390,17 +390,17 @@ HTTP Post请求体里的JSON对象需要按照key的字母升序排序，然后�
 
 以某次OCR认证请求为例：
 POST请求的JSON对象按照key升序排序后的JSON为
-```
+```json
 {
-	"auth_id":"1233211233211233211123312",
-	"backdoc":"image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
-	"country":"CN",
-	"doc_type":"passport",
-	"frontdoc":"image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
-		"ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"owner_ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"txn_body":"000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
-	"txn_hash":"5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583"
+	"auth_id": "1233211233211233211123312",
+	"backdoc": "image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
+	"country": "CN",
+	"doc_type": "passport",
+	"frontdoc": "image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
+	"ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"owner_ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"txn_body": "000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
+	"txn_hash": "5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583"
 }
 ```
 转换成标准JSON格式字符串：
@@ -410,18 +410,18 @@ POST请求的JSON对象按照key升序排序后的JSON为
 再对该JSON格式字符串进行签名，得到签名值sigvalue后，以signature为key添加到Post请求体的JSON对象中
 
 最终认证Post请求体的JSON对象为：
-```
+```json
 {
-	"auth_id":"1233211233211233211123312",
-	"backdoc":"image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
-	"country":"CN",
-	"doc_type":"passport",
-	"frontdoc":"image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
-		"ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"owner_ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"txn_body":"000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
-	"txn_hash":"5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583",
-	"signature":"sigvalue"
+	"auth_id": "1233211233211233211123312",
+	"backdoc": "image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
+	"country": "CN",
+	"doc_type": "passport",
+	"frontdoc": "image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
+	"ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"owner_ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"txn_body": "000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
+	"txn_hash": "5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583",
+	"signature": "sigvalue"
 }
 ```
 
@@ -430,8 +430,7 @@ POST请求的JSON对象按照key升序排序后的JSON为
 
 构造转账交易，使用身份ONT ID私钥进行签名验签等操作，可参考
 
-[JAVA DEMO](https://github.com/ontio/documentation/blob/master/pro-website-docs/assets/Demo.java)
+- [Java demo](../../sample/Demo.java)
+- [TS demo](../../sample/OntIdSignDemo.js)
 
-[TS DEMO](https://github.com/ontio/documentation/blob/master/pro-website-docs/assets/OntIdSignDemo.js)
-
-[SDK开发者文档中心](https://dev-docs.ont.io/#/docs-en/SDKs/00-overview)
+[SDK开发者文档中心](https://docs.ont.io/developer-tools/sdk)

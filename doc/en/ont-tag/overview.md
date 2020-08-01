@@ -1,4 +1,4 @@
-﻿<h1 align="center">ONT TAG Product and Service Introduction </h1>
+<h1 align="center">ONT TAG Product and Service Introduction </h1>
 
 ## What is ONT TAG?
 
@@ -16,22 +16,22 @@ ONT TAG has the following advantages:
 * All authentication actions and results are attested to the Ontology blockchain;
 * The specification supports cryptographic algorithms such as zero-knowledge proof, and users can selectively present their own identity information to maximize user privacy.
 
-[>> Start using the ONT TAG service](auth.md)。
+[>> Start using the ONT TAG service](./auth.md)。
 
 
 ## Learn how ONT TAG works
 
-> ONT TAG is based on ONT ID. To understand how to use ONT ID and verifiable claims, please first familiarize yourself with [ONT ID](https://docs.ont.io/ontology-elements/ontid).
+> ONT TAG is based on ONT ID. To understand how to use ONT ID and verifiable credentials, please first familiarize yourself with [ONT ID](https://docs.ont.io/ontology-elements/ontid).
 
 The ONT TAG open authentication service is based on the following principles:
-![](img/5a5fff53e4b0abe85d5e3e5f.png)
+![](../res/process.png)
 
 The main duties of ONT TAG are:
 * Registering trust anchors and their verification services to the Ontology ecosystem, and providing a verification service discovery function;
-* Registering authentication and verifiable claim templates, and providing a template discovery function;
-* User verifiable claim information delivery;
-* Matching veriable claim templates with user authentication requirements.
+* Registering authentication and verifiable credential templates, and providing a template discovery function;
+* User verifiable credential information delivery;
+* Matching veriable credential templates with user authentication requirements.
 
 The particles involved in the process include:
 * Requester: A dApp, organization, or service that requires authentication for its users. The authentication service demander in the Ontology trust ecosystem.
-* Trust anchor: Trust anchors in the Ontology trust ecosystem provide authentication services for users worldwide and can issue verifiable claims. Behind them are global identity authentication service providers, which can help users achieve identity authentication.
+* Trust anchor: Trust anchors in the Ontology trust ecosystem provide authentication services for users worldwide and can issue verifiable credentials. Behind them are global identity authentication service providers, which can help users achieve identity authentication.

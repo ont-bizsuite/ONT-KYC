@@ -1,33 +1,32 @@
 <h1 align="center">Global Identity Authentication Access Guide</h1>
 
+[TOC]
+
 ## Overview
 
-Ontology Global Identity TrustAnchor(ONTTA) is a comprehensive global identity trust source for Ontology Trust Ecosystem. It can authenticate passports, driver's licenses, ID card OCR certifications and issue corresponding verifiable claims to citizens in 200+ countries around the world. It provides multi-dimensional, high-accuracy and global identity authentication services for identity authentication requesters.
+Ontology Global Identity TrustAnchor(ONTTA) is a comprehensive global identity trust source for Ontology Trust Ecosystem. It can authenticate passports, driver's licenses, ID card OCR certifications and issue corresponding verifiable credentials to citizens in 200+ countries around the world. It provides multi-dimensional, high-accuracy and global identity authentication services for identity authentication requesters.
 
-* TrustAnchor Name : Ontology Global Identity TrustAnchor
-* TrustAnchor ONT ID :  did：ont：ANNmeSiQJVwq3z6KvKo3SSKGnoBqvwYcwt
-* TrustAnchor Account Address : ATGJSGzm2poCB8N44BgrAccJcZ64MFf187
+* TrustAnchor Name: Ontology Global Identity TrustAnchor
+* TrustAnchor ONT ID:  did:ont:ANNmeSiQJVwq3z6KvKo3SSKGnoBqvwYcwt
+* TrustAnchor Account Address: ATGJSGzm2poCB8N44BgrAccJcZ64MFf187
 * Service List
 
-| Claim_Templete_Name | Claim_Description |  DocLink |
-| :-----------------: | :----------------:| :------: |
-|claim:sfp_passport_authentication | Global User Passport Authentication   | ONTTA.md |
-|claim:sfp_idcard_authentication   | Global User ID Authentication | ONTTA.md |
-|claim:sfp_dl_authentication       | Global user license Authentication   | ONTTA.md |
-
-
+| Credential Templete Name | Credential Description |
+| :-----------------: | :----------------:|
+|credential:sfp_passport_authentication | Global User Passport Authentication   |
+|credential:sfp_idcard_authentication   | Global User ID Authentication |
+|credential:sfp_dl_authentication       | Global user license Authentication   |
 
 ## Charges
 
 The instant payment mode is adopted, that is, each identity authentication request needs to consume ONG, so the authentication requester needs to establish an ONG transfer transaction for each authentication request.（The Payment Address is **ATGJSGzm2poCB8N44BgrAccJcZ64MFf187**).
 
-Cost per authentication：*1.2 ONG*
-
+Please contact **[Ontology](contact@ont.io)** for cost and further integration information.
 
 ## Authentication Request Example
 
 ```json
-Host：https://api.ont.network/api/v1/ontta/ocr/authentication
+Host：https://host/api/v1/ontta/ocr/authentication
 Method：POST /HTTP/1.1
 Content-Type: application/json
 RequestExample:
@@ -462,27 +461,26 @@ Yemen|YE
 Zambia|ZM
 Zimbabwe|ZW
 
-## Verifiable claim template
+## Verifiable credential template
 
-Following Ontology standard verifiable claim format：
+Following Ontology standard verifiable credential format：
 
 	base64(Header)'.'base64(Payload)'.'base64(Signature)'.'base64(MerkleProof)
 
 Format of Authentication Information clm in Payload is as follows：
 
-```
+```json
 {
-	"clm":{
+	"cred": {
 		"Nationality": "US",
-		"Name":"john smith",
-		"BirthDay":"1990-01-01",
-		"IssueDate":"2000-01-01",
-		"ExpirationDate":"2020-01-01",
-		"IDDocNumber":"510807199001012551",
-		"IssuerName":"ONTTA"
+		"Name": "john smith",
+		"BirthDay": "1990-01-01",
+		"IssueDate": "2000-01-01",
+		"ExpirationDate": "2020-01-01",
+		"IDDocNumber": "510807199001012551",
+		"IssuerName": "ONTTA"
 	}
 }
-
 ```
 | Field     |     Type |   Description   |
 | :--------------: | :--------:| :------: |
@@ -509,47 +507,49 @@ The JSON object in the HTTP Post request body needs to be sorted in ascending al
 Use some OCR certification request as example：
 
 The JSON object requested by the POST is sorted in ascending order of the key, and the JSON is:
-```
+```json
 {
-	"auth_id":"1233211233211233211123312",
-	"backdoc":"image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
-	"country":"CN",
-	"doc_type":"passport",
-	"frontdoc":"image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
-		"ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"owner_ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"txn_body":"000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
-	"txn_hash":"5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583"
+	"auth_id": "1233211233211233211123312",
+	"backdoc": "image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
+	"country": "CN",
+	"doc_type": "passport",
+	"frontdoc": "image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
+	"ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"owner_ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"txn_body": "000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
+	"txn_hash": "5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583"
 }
 ```
 Convert to standard JSON format string：
 
-	{"auth_id":"1233211233211233211123312","backdoc":"image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...","country":"CN","doc_type":"passport","frontdoc":"image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...","ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw","owner_ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw","txn_body":"000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583","txn_hash":"5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583"}
+```
+{"auth_id":"1233211233211233211123312","backdoc":"image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...","country":"CN","doc_type":"passport","frontdoc":"image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...","ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw","owner_ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw","txn_body":"000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583","txn_hash":"5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583"}
+```
 
 Then sign the JSON format string, obtain the signature value (sigvalue), and add it to the JSON object of the Post request body with the signature as the key.
 
 The JSON object that finally authenticates the Post request body is：
-```
+```json
 {
-	"auth_id":"1233211233211233211123312",
-	"backdoc":"image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
-	"country":"CN",
-	"doc_type":"passport",
-	"frontdoc":"image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
-		"ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"owner_ontid":"did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
-	"txn_body":"000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
-	"txn_hash":"5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583",
-	"signature":"sigvalue"
+	"auth_id": "1233211233211233211123312",
+	"backdoc": "image/png;base64,iVBORw0KGgoAAAANSUhmJM5WHUcAeKwnHAcY...",
+	"country": "CN",
+	"doc_type": "passport",
+	"frontdoc": "image/png;base64,iVBORw0KGgoAAAAADAFBMAAAAAAAAAAAAAAA...",
+	"ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"owner_ontid": "did:ont:AcbVUAXkJSKy7g43KHW378pBwA48Ywbuuw",
+	"txn_body": "000005f77103a51c9eb625618fab20a8486fc03b1184...1dee3be19909583",
+	"txn_hash": "5f77103a51ef21c912625618fab20a8486fc03b118410b5101dee3be19909583",
+	"signature": "sigvalue"
 }
 ```
 
 
-### Example DEMO
+### Code sample
 
 For Construct transfer transaction, Apply ONT ID private key for signature, and so on, please refer to
-[JAVA DEMO](https://github.com/ontio/documentation/blob/master/pro-website-docs/assets/Demo.java)
 
-[TS DEMO](https://github.com/ontio/documentation/blob/master/pro-website-docs/assets/OntIdSignDemo.js)
+- [Java demo](../../sample/Demo.java)
+- [TS demo](../../sample/OntIdSignDemo.js)
 
-[SDK developer documentation center](https://dev-docs.ont.io/#/docs-en/SDKs/00-overview)
+[SDK developer documentation center](https://docs.ont.io/developer-tools/sdk)

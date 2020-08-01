@@ -2,6 +2,8 @@
 
 此文档为h5版本kyc dapp的对接文档。
 
+[TOC]
+
 ##  1. 认证商选择
 
 为了适应dapp会有不同的web环境，选择**Shufti Pro**作为认证商。
@@ -17,26 +19,20 @@
 
 ### 2.1 认证
 
+![cert](../res/certification.png)
+
 1. 在应用场景中触发认证请求，重定向到KYC dapp h5（在url后附上用户ONT ID），如果该ONT ID已认证，则显示ONT ID信息，如果未认证，走认证流程
-
 2. 用户上传认证所需证件信息到ONT TAG
-
 3. 提交[认证请求](overview.md)到ONT TAG。这个请求需要认证需求方的签名，即应用方的签名。KYC dapp发送相关数据给应用方后台，应用方后台添加上自己签名后，提交认证请求到ONT TAG。
-
 4. KYC dapp显示等待审核页面。
-
-   ![cert](img/certification.jpg)
 
 ### 2.2 授权
 
+![auth](../res/auth.png)
+
 1. 应用方在需要用户授权的地方，通过url跳转到KYC dapp h5（在url后附上参数，通过用户ONT ID查询到加密后claim），显示授权页面。
-
 2. 用户确认后，输入密码，发送授权信息到应用方后台（请求数据使用ONT ID 账户体系后台公钥加密），应用方后台转发请求数据到ONT ID后台，得到解密后的Claim。
-
 3. 应用方验证Claim，然后把验证结果，即授权结果，返回给KYC dapp，KYC dapp根据授权结果显示认证成功或失败。
-
-   ![auth](img/auth.jpg)
-
 
 ## 3. 应用方对接所需接口和链接
 
@@ -81,7 +77,7 @@ url: host + /#/authHome?userOntid={userOntid}&dappOntid={dappOntid}&dappName={da
 ### POST
 
 ```
-url: 由应用方传给KYC dapp(比如http://host + /handleAuth)
+url: 由应用方传给KYC dapp(比如http://host/handleAuth)
 ```
 
 ### REQUEST
