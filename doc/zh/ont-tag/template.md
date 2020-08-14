@@ -13,17 +13,17 @@
 
 | 可验证凭证标识     |     说明 |   签发者   |
 | :--------------: | :--------:| :------: |
-| credentail:email_authentication |   个人邮箱认证可验证凭证|  ONTO  |
-| credentail:mobile_authentication |   个人手机认证可验证凭证|  ONTO  |
-| credentail:cfca_authentication |   中国公民实名认证可验证凭证|  CFCA |
-| credentail:sensetime_authentication |   中国公民实名认证可验证凭证|  商汤SenseTime |
-| credentail:idm_passport_authentication |   全球用户个人护照认证可验证凭证|  IdentityMind |
-| credentail:idm_idcard_authentication |    全球用户个人身份证件认证可验证凭证|  IdentityMind |
-| credentail:idm_dl_authentication |    全球用户个人驾照认证可验证凭证|  IdentityMind |
-| credentail:github_authentication |   Github社媒认证可验证凭证|  Github |
-| credentail:twitter_authentication |   Twitter社媒认证可验证凭证|  Twitter |
-| credentail:linkedin_authentication |   Linkedin社媒认证可验证凭证| Linkedin |
-| credentail:facebook_authentication |   Facebook社媒认证可验证凭证|  Facebook |
+| credential:email_authentication |   个人邮箱认证可验证凭证|  ONTO  |
+| credential:mobile_authentication |   个人手机认证可验证凭证|  ONTO  |
+| credential:cfca_authentication |   中国公民实名认证可验证凭证|  CFCA |
+| credential:sensetime_authentication |   中国公民实名认证可验证凭证|  商汤SenseTime |
+| credential:idm_passport_authentication |   全球用户个人护照认证可验证凭证|  IdentityMind |
+| credential:idm_idcard_authentication |    全球用户个人身份证件认证可验证凭证|  IdentityMind |
+| credential:idm_dl_authentication |    全球用户个人驾照认证可验证凭证|  IdentityMind |
+| credential:github_authentication |   Github社媒认证可验证凭证|  Github |
+| credential:twitter_authentication |   Twitter社媒认证可验证凭证|  Twitter |
+| credential:linkedin_authentication |   Linkedin社媒认证可验证凭证| Linkedin |
+| credential:facebook_authentication |   Facebook社媒认证可验证凭证|  Facebook |
 
 
 ## 标准认证模板
@@ -31,8 +31,8 @@
 
 | 认证模板类型 | 认证模板标识 | 认证模板描述 | 认证模板对应的可验证凭证模板标识 | 授权逻辑规则 |
 | :--------: | :--------:|:---------:|:--------: | :--------:|
-| 社交媒体认证    |   authtemplate_social01 |  有关用户各种社交媒体的基本信息认证  | credentail:github_authentication<br><br>credentail:twitter_authentication<br><br>credentail:facebook_auuthentication<br><br>credentail:linkedin_authentication |   任选其一 |
-| 联系信息认证    |   authtemplate_contact01 |  有关全球用户的邮箱信息认证  | credentail:email_authentication |   必选 |
-| 联系信息认证    |   authtemplate_contact02 |  有关全球用户的手机号信息认证  | credentail:mobile_authentication |   必选 |
-| kyc认证    |   authtemplate_kyc01 |  有关全球用户基本个人信息的认证  | credentail:idm_passport_authentication<br><br>credentail:idm_idcard_authentication<br><br>credentail:idm_dl_authentication |   任选其一 |
-| kyc认证    |   authtemplate_kyc02 |  有关中国用户的实名信息认证  | credentail:cfca_authentication |   必选 |
+| 社交媒体认证    |   authtemplate_social01 |  有关用户各种社交媒体的基本信息认证  | credential:github_authentication<br><br>credential:twitter_authentication<br><br>credential:facebook_auuthentication<br><br>credential:linkedin_authentication |   任选其一 |
+| 联系信息认证    |   authtemplate_contact01 |  有关全球用户的邮箱信息认证  | credential:email_authentication |   必选 |
+| 联系信息认证    |   authtemplate_contact02 |  有关全球用户的手机号信息认证  | credential:mobile_authentication |   必选 |
+| kyc认证    |   authtemplate_kyc01 |  有关全球用户基本个人信息的认证  | credential:idm_passport_authentication<br><br>credential:idm_idcard_authentication<br><br>credential:idm_dl_authentication |   任选其一 |
+| kyc认证    |   authtemplate_kyc02 |  有关中国用户的实名信息认证  | credential:cfca_authentication |   必选 |

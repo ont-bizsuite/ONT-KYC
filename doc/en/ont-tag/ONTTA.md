@@ -13,9 +13,12 @@ Ontology Global Identity TrustAnchor(ONTTA) is a comprehensive global identity t
 
 | Credential Templete Name | Credential Description |
 | :-----------------: | :----------------:|
-|credential:sfp_passport_authentication | Global User Passport Authentication   |
-|credential:sfp_idcard_authentication   | Global User ID Authentication |
-|credential:sfp_dl_authentication       | Global user license Authentication   |
+|credential:sfp_passport_authentication | Global user passport authentication   |
+|credential:sfp_idcard_authentication   | Global user ID authentication |
+|credential:sfp_dl_authentication       | Global user license authentication   |
+|credentail:idm_passport_authentication	| Global user passport authentication   |
+|credentail:idm_idcard_authentication	| Global user ID authentication |
+|credentail:idm_dl_authentication	| Global user license authentication   |
 
 ## Charges
 

@@ -49,11 +49,11 @@ ONT TAG目前已经对外开放的认证服务包括：
 
 | Credentail Templete Name | Credentail Description | TrustAnchor ONT ID |
 | :-----------------: | :----------------: | ------------------ |
-|credentail:sfp_passport_authentication | 全球用户护照认证   | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui |
-|credentail:sfp_idcard_authentication   | 全球用户身份证认证 | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui |
-|credentail:sfp_dl_authentication       | 全球用户驾照认证   | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui |
-|credentail:sensetime_authentication | 中国用户身份证认证 | did:ont:ARr6ApK24EU7nufND4s1SWpwULHBertpJb |
-|credentail:idm_authentication | IdentityMinds身份证认证 | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui|
+|credential:sfp_passport_authentication | 全球用户护照认证   | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui |
+|credential:sfp_idcard_authentication   | 全球用户身份证认证 | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui |
+|credential:sfp_dl_authentication       | 全球用户驾照认证   | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui |
+|credential:sensetime_authentication | 中国用户身份证认证 | did:ont:ARr6ApK24EU7nufND4s1SWpwULHBertpJb |
+|credential:idm_authentication | IdentityMinds身份证认证 | did:ont:AZxCwjSGtHGRR9LPgPDtFTjiXpHTKkMnui|
 
 ### Step 2: 确定收费模式
 
@@ -158,8 +158,8 @@ SuccessResponse：
 认证需求方向`ONT TAG`提交kyc认证所需用户数据，由`ONT TAG`进行路由转发到对应的`TrustAnchor`进行身份认证、可信声明签发、可信声明基本信息存证，并使用端到端加密传输可信声明到`ONT TAG`（是否加密是可选的，由认证时传入的`encryption`加密参数确定）
 
 - **端到端加密传输方案**：若url参数`encryption`指定为`true`，则认证成功后生成的可信声明会由`TrustAnchor`用用户`ONT ID`的公钥进行`ECDSA`加密，在后续传输过程中都是加密后的密文，保证数据隐私性且不被篡改，用户接收到后使用自己的`ONT ID`的私钥才可以解密获取可信声明原文。
-- **防刷**：以`owner_ontid`+`credentail_context`+`ar_ontid`作为防刷维度。若一个用户提交了某种可信声明认证，该可信声明认证次数+1，认证失败后次数-1。到达某个限制次数后，用户再次提交认证会返回`62001`错误码。
-- **可信声明模板**：向`ONT TAG`提交认证时，需传入正确的且匹配的可信声明模板和`TrustAnchor`的`ONTID`，即`credentail_context`和`ta_ontid`字段
+- **防刷**：以`owner_ontid`+`credential_context`+`ar_ontid`作为防刷维度。若一个用户提交了某种可信声明认证，该可信声明认证次数+1，认证失败后次数-1。到达某个限制次数后，用户再次提交认证会返回`62001`错误码。
+- **可信声明模板**：向`ONT TAG`提交认证时，需传入正确的且匹配的可信声明模板和`TrustAnchor`的`ONTID`，即`credential_context`和`ta_ontid`字段
 
 ```json
 Host：域名+/v1/kyc-data?encryption=true|false
@@ -171,7 +171,7 @@ RequestExample：
 	"ar_ontid": "did:ont:A8V9Kq6te1Fk01KQ3ecqbfbPwrkBFx9P05",
 	"ta_ontid": "did:ont:A8V9Kq6te1Fk01KQ3ecqbfbPwrkBFx9P05",
 	"owner_ontid": "did:ont:AJua7C6teoFUs2KhRecqbfbPwrF99kHHgj",
-	"credentail_context": "credentail:sfp_idcard_authentication",
+	"credential_context": "credential:sfp_idcard_authentication",
 	"country": "CN",
 	"name": "dwqq",
 	"doc_type": "passport",
@@ -200,7 +200,7 @@ SuccessResponse：
 | ar_ontid           | string                          | 认证需求方的ONT ID                                           | Y         |
 | owner_ontid        | string                          | 用户ONT ID                                                   | Y         |
 | ta_ontid           | string                          | TrustAnchor的ONT ID。每个TrustAnchor都会注册自己的ONT ID，ONT TAG根据认证需求方传入的ONT ID及可信声明模板进行认证路由。 | Y         |
-| credentail_context | string                          | 可信声明模板。                                               | Y         |
+| credential_context | string                          | 可信声明模板。                                               | Y         |
 | country            | string 2 characters Length      | 两位国家代码，参照ISO 3166-1 alpha-2编码标准。支持的国家及对应的国家编码可查询[更多接口定义文档](specification.md)中的认证支持国家列表。 | Y         |
 | name               | string                          | 姓名                                                         | Y         |
 | doc_type           | string                          | 证件类型。目前支持三种：护照:passport,身份证:id_card,驾照: driving_license | Y         |
@@ -229,7 +229,7 @@ RequestExample：
 		"ar_ontid": "did:ont:A8V9Kq6te1Fk01KQ3ecqbfbPwrkBFx9P05",
 		"owner_ontid": "did:ont:Aju0Kq6te1Fk01KQ3ecqbfbPwrkBFx16Mc",
 		"ta_ontid": "did:ont:A5BtKqo9e1Fk01KQ3eckFv41wrkBFl09Fq",
-		"credentail_context": "credentail:sfp_idcard_authentication",
+		"credential_context": "credential:sfp_idcard_authentication",
 		"encrp_origdata": "xxxxxxxxxx",
 		"tx_hash": "",
 		"description": "",
@@ -245,7 +245,7 @@ RequestExample：
 | ------------------ | ------- | -------------------------------------------------- | --------- |
 | status             | int     | TA认证结果  1：认证通过，2：认证失败               | Y         |
 | auth_id            | String  | 认证需求方认证时传入的认证编号                     | Y         |
-| credentail_context | String  | 可信声明模板标识                                   | Y         |
+| credential_context | String  | 可信声明模板标识                                   | Y         |
 | description        | String  | 若认证失败，即失败原因。若认证成功，即可信声明描述 | Y         |
 | encrp_origdata     | String  | 认证数据的可信声明。若认证失败，则为空字符串。     | Y         |
 | ar_ontid           | String  | 请求方的ONT ID                                     | Y         |
@@ -268,10 +268,10 @@ RequestExample：
 | 61001 | int | FAIL, param error. 参数错误 |
 | 61002 | int | FAIL, already exist. 已存在 |
 | 61003 | int | FAIL, not found. 未找到 |
-| 61012 | int | credentail context already exist. 可信声明模板已存在 |
-| 61013 | int | credentail context not found. 可信声明模板不存在 |
-| 61014 | int | trustanchor not match the credentail context. Trustanchor和可信声明模板不匹配 |
-| 61015 | int | country not match credentail context.国家与认证模板不匹配 |
+| 61012 | int | credential context already exist. 可信声明模板已存在 |
+| 61013 | int | credential context not found. 可信声明模板不存在 |
+| 61014 | int | trustanchor not match the credential context. Trustanchor和可信声明模板不匹配 |
+| 61015 | int | country not match credential context.国家与认证模板不匹配 |
 | 62001 | int | authentication request time exceed limit.认证请求次数超限 |
 | 62003 | int | FAIL, communication fail.通信异常 |
 | 62007 | int | FAIL, need authorization header.需要身份认证Header |

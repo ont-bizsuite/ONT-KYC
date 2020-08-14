@@ -80,7 +80,7 @@ ONTO导出keystore示例：
 	"parameters": {
 		"curve": "secp256r1"
 	},
-	"credentailArray": [
+	"credentialArray": [
     "...",
     "..."
   ],

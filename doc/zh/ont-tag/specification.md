@@ -63,7 +63,7 @@ Response
 	"desc": "SUCCESS",
 	"version": "1.0",
 	"result": [{
-		"credentail_context": "credentail:sfp_passport_authentication",
+		"credential_context": "credential:sfp_passport_authentication",
 		"create_time": "2019-01-10T14:19:46.000+0000",
 		"encrp_origdata": "",
 		"issue_ontid": "did:ont:ARr6ApK24EU7nufND4s1SWpwULHBertpJb",
@@ -87,7 +87,7 @@ Response
 |error | int | 错误码 |
 |desc | String | 错误信息。成功即SUCCESS，其他即错误信息|
 |result | boolean | 对象列表|
-|credentail_context | String | credentail模板 |
+|credential_context | String | credential模板 |
 |encrp_origdata | String | 加密数据 |
 |txnhash | String | 上链交易HASH |
 |create_time | String | 生成时间 |
