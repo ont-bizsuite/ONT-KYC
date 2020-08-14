@@ -148,7 +148,7 @@ RequestExample：
 	"ontid": "did:ont:AEnB1v4zRzepHY344g2K1eiZqdskhwGuN3",
 	"owner_ontid": "did:ont:A9Kn1v4zRzepHY344g2K1eiZqdskhnh2Jv",
 	"ta_ontid": "did:ont:A7wB7v4zRzepHY344g2K1eiZqdskhwHu9J",
-	"txnhash": "836764a693000d2ca89ea7187af6d40c0a10c31b202b0551f63c6bc1be53fc5b"
+	"txnhash": "836764a693000d2ca89ea7187af6d40c0a10c31b202b0551f63c6bc1be53fc5b",
 	"signature": "AQp2ka0OJWTNN+D3yUlydyjpLpS/GJp6cFt9+wWeT25dBdGYSaErxVDpM1hnbC6Pog="
 }
 ```
