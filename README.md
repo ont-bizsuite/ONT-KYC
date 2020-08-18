@@ -7,5 +7,5 @@
 
 ## Ontology Trust Anchor Gateway (ONT TAG)
 
-- [gateway doc](./doc/en/ont-tag/overview.md) [ [中](./doc/cn/ont-tag/overview.md) ]
+- [gateway doc](./doc/en/ont-tag/) [ [中](./doc/zh/ont-tag/) ]
 
