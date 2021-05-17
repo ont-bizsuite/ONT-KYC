@@ -214,10 +214,10 @@ SuccessResponse：
 
 
 
-## List of authentication supported countries
+## List of authentication supported countries and regions
 
 
-Country Name       | Country Code
+Country/Region Name | Country/Region Code
 ---------          | -----------
 Afghanistan|AF
 Aland Islands|AX
