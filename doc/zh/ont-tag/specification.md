@@ -98,10 +98,10 @@ Response
 
 
 
-## 认证支持国家列表
+## 认证支持国家和地区列表
 
 
-Country Name       | Country Code
+Country/Region Name | Country/Region Code
 ---------          | -----------
 Afghanistan|AF
 Aland Islands|AX
